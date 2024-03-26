@@ -3,7 +3,7 @@ CATEGORIES = {
         'clothing': {
             'men': {
                 'T-Shirts & Polos': 'https://www.amazon.in/s?rh=n%3A1968120031&fs=true&ref=lp_1968120031_sar',
-                'Shirts': 'https://www.amazon.in/s?rh=n%3A1968093031&fs=true&ref=lp_1968093031_sar',
+                'Shirts': 'https://www.amazon.in/s?rh=n%3A94998646031&fs=true&ref=lp_94998646031_sar',
                 'Jeans': 'https://www.amazon.in/s?rh=n%3A1968076031&fs=true&ref=lp_1968076031_sar',
                 'Suits & Blazers': 'https://www.amazon.in/s?rh=n%3A1968107031&fs=true&ref=lp_1968107031_sar',
                 'Sunglasses & Spectacle Frames': 'https://www.amazon.in/s?rh=n%3A1968032031&fs=true&ref=lp_1968032031_sar',
@@ -46,18 +46,62 @@ CATEGORIES = {
                     'Sports & Outdoor Shoes':'https://www.amazon.in/s?rh=n%3A1983519031&fs=true&ref=lp_1983519031_sar',
                     'Formal Shoes':'https://www.amazon.in/s?rh=n%3A1983572031&fs=true&ref=lp_1983572031_sar',
                     'Sandals & Floaters':'https://www.amazon.in/s?rh=n%3A1983571031&fs=true&ref=lp_1983571031_sar',
-                    'Flip-Flops & Slippers':'',
-                    'Thong Sandals':'',
-                    'Ethnic Footwear':'',
-                    'Safety Shoes':'',
+                    'Flip-Flops & Slippers':'https://www.amazon.in/s?rh=n%3A1983575031&fs=true&ref=lp_1983575031_sar',
+                    'Thong Sandals':'https://www.amazon.in/s?rh=n%3A1983576031&fs=true&ref=lp_1983576031_sar',
+                    'Ethnic Footwear':'https://www.amazon.in/s?rh=n%3A4068644031&fs=true&ref=lp_4068644031_sar',
+                    'Safety Shoes':'https://www.amazon.in/s?rh=n%3A1983574031&fs=true&ref=lp_1983574031_sar',
             },
-            "women":'',
-            "kids":''
+            "women":{
+                'Ballet Flats':'https://www.amazon.in/s?rh=n%3A1983627031&fs=true&ref=lp_1983627031_sar',
+                'Boots':'https://www.amazon.in/s?rh=n%3A1983629031&fs=true&ref=lp_1983629031_sar',
+                'Casual Shoes':'https://www.amazon.in/s?rh=n%3A9780815031&fs=true&ref=lp_9780815031_sar',
+                'Ethnic Footwear':'https://www.amazon.in/s?rh=n%3A4068645031&fs=true&ref=lp_4068645031_sar',
+                'Fashion Sandals':'https://www.amazon.in/s?rh=n%3A1983633031&fs=true&ref=lp_1983633031_sar',
+                'Fashion Slippers':'https://www.amazon.in/s?rh=n%3A1983639031&fs=true&ref=lp_1983639031_sar',
+                'Flip-Flops & Slippers':'https://www.amazon.in/s?rh=n%3A1983638031&fs=true&ref=lp_1983638031_sar',
+                'Athletic & Outdoor Sandals':'https://www.amazon.in/s?rh=n%3A1983582031&fs=true&ref=lp_1983582031_sar',
+                'Formal Shoes':'https://www.amazon.in/s?rh=n%3A1983634031&fs=true&ref=lp_1983634031_sar',
+                'Pumps':'https://www.amazon.in/s?rh=n%3A1983631031&fs=true&ref=lp_1983631031_sar',
+                'Sports & Outdoor Shoes':'https://www.amazon.in/s?rh=n%3A1983579031&fs=true&ref=lp_1983579031_sar'
+            },
+            "kids":{
+                "Girls shoes":"https://www.amazon.in/s?rh=n%3A1983456031&fs=true&ref=lp_1983456031_sar",
+                "Boys shoes ":'https://www.amazon.in/s?rh=n%3A1983397031&fs=true&ref=lp_1983397031_sar',
+                "Baby shoes":'https://www.amazon.in/s?rh=n%3A1953272031&fs=true&ref=lp_1953272031_sar'
+           }
         },
         "watches":{
-            "men":'',
-            "women":'',
-            "kids":''
+            "men":{
+                'Wrist Watches':'https://www.amazon.in/s?bbn=2563504031&rh=n%3A1350387031%2Cn%3A2563504031%2Cn%3A15723937031&dc&qid=1711038027&rnid=2563504031&ref=lp_2563504031_nr_n_0',
+                'Fashion Smartwatches':'https://www.amazon.in/s?bbn=2563504031&rh=n%3A1350387031%2Cn%3A2563504031%2Cn%3A15723938031&dc&qid=1711038027&rnid=2563504031&ref=lp_2563504031_nr_n_1',
+                'Pocket & Fob Watches':'https://www.amazon.in/s?bbn=2563504031&rh=n%3A1350387031%2Cn%3A2563504031%2Cn%3A15723939031&dc&qid=1711038027&rnid=2563504031&ref=lp_2563504031_nr_n_2',
+            },
+            "women":{
+                'Wrist Watches':'https://www.amazon.in/s?bbn=2563505031&rh=n%3A1350387031%2Cn%3A2563505031%2Cn%3A15723941031&dc&qid=1711038212&rnid=2563505031&ref=lp_2563505031_nr_n_0',
+                'Fashion Smartwatches':'https://www.amazon.in/s?bbn=2563505031&rh=n%3A1350387031%2Cn%3A2563505031%2Cn%3A15723942031&dc&qid=1711038212&rnid=2563505031&ref=lp_2563505031_nr_n_1',
+                'Pocket & Fob Watches':'https://www.amazon.in/s?bbn=2563505031&rh=n%3A1350387031%2Cn%3A2563505031%2Cn%3A15723939031&dc&qid=1711038212&rnid=2563505031&ref=lp_2563505031_nr_n_2',
+            },
+            "kids":{
+                "Girls Watches":"https://www.amazon.in/s?i=watches&rh=n%3A1350387031%2Cn%3A5518819031&dc&fs=true&ds=v1%3AxvHi%2FdtKJZvE8bDFGIrmfIlo7TKrCItzQcKI%2BpKk1NU&qid=1711038447&rnid=1350387031&ref=sr_nr_n_4",
+                "Boys Watches ":'https://www.amazon.in/s?rh=n%3A2563506031&fs=true&ref=lp_2563506031_sar'
+            }
+        },
+        "Sunglasses & Spectacle Frames":{
+            "men":{
+                'Sunglasses':'https://www.amazon.in/s?k=sunglasses+for+men&crid=1TD3LJYAKGCW8&pf_rd_i=1968036031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=12b5260b-4338-474f-93e7-f7a6baf9113f&pf_rd_r=AQSHW7YTHZNJ2NH3TMFP&pf_rd_s=merchandised-search-6&sprefix=sunglasses+for+men%2Caps%2C205&ref=nb_sb_noss_1',
+                'Smart sunglasses':'https://www.amazon.in/s?k=smart+sunglasses&s=relevanceblender&ds=v1%3AxwuHYBTvkWNaqjfk47XyKKWbVsEwp6Ey5AODchmzYjA&crid=1N3UNHHIJRECL&pf_rd_i=1968036031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=12b5260b-4338-474f-93e7-f7a6baf9113f&pf_rd_r=AQSHW7YTHZNJ2NH3TMFP&pf_rd_s=merchandised-search-6&qid=1696589126&sprefix=smart+sunglasses+%2Caps%2C204&ref=sr_st_relevanceblender',
+                'Blue Cut glasses':'https://www.amazon.in/s?k=computer+glassesfor+men&crid=1NZMPR4EOOV9H&pf_rd_i=1968036031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=12b5260b-4338-474f-93e7-f7a6baf9113f&pf_rd_r=AQSHW7YTHZNJ2NH3TMFP&pf_rd_s=merchandised-search-6&sprefix=computer+glassesfor+m%2Caps%2C293&ref=nb_sb_noss_2',
+                'Frames':'https://www.amazon.in/s?k=frames+for+men&i=apparel&rh=n%3A1968032031%2Cn%3A1968035031&s=exact-aware-popularity-rank&dc&ds=v1%3AgnonTUOcvI94%2F6m7c6loPFfUz0RQEq3X9TKfYmGcJA0&crid=2UB336FSDAAUN&pf_rd_i=1968036031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=12b5260b-4338-474f-93e7-f7a6baf9113f&pf_rd_r=AQSHW7YTHZNJ2NH3TMFP&pf_rd_s=merchandised-search-6&qid=1696589383&rnid=3576079031&sprefix=frames+for+men%2Caps%2C206&ref=sr_st_exact-aware-popularity-rank'
+            },
+            "women":{
+                'Sunglasses':'https://www.amazon.in/s?k=sunglasses+for+men&i=apparel&rh=n%3A1571271031%2Cn%3A1953602031%2Cn%3A1968397031%2Cn%3A1968401031&dc&ds=v1%3AceQKO7aJ%2F2zau54X2hLUlBMvzyKt8zzhGzHLOzIw8w8&crid=1TD3LJYAKGCW8&pf_rd_i=1968036031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=12b5260b-4338-474f-93e7-f7a6baf9113f&pf_rd_r=AQSHW7YTHZNJ2NH3TMFP&pf_rd_s=merchandised-search-6&qid=1711041898&rnid=1571271031&sprefix=sunglasses+for+men%2Caps%2C205&ref=sr_nr_n_1',
+                'Reading Glasses':'https://www.amazon.in/s?k=sunglasses+for+men&i=apparel&rh=n%3A1571271031%2Cn%3A1953602031%2Cn%3A1968397031%2Cn%3A1374602031&dc&ds=v1%3AV45yAZTgkHH%2BSvVuRcdVkbZzKwFXsRq0AcEJswbsTwU&crid=1TD3LJYAKGCW8&pf_rd_i=1968036031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=12b5260b-4338-474f-93e7-f7a6baf9113f&pf_rd_r=AQSHW7YTHZNJ2NH3TMFP&pf_rd_s=merchandised-search-6&qid=1711041938&rnid=1571271031&sprefix=sunglasses+for+men%2Caps%2C205&ref=sr_nr_n_3',
+                'Frames':'https://www.amazon.in/s?k=sunglasses+for+men&i=apparel&rh=n%3A1571271031%2Cn%3A1953602031%2Cn%3A1968397031%2Cn%3A1968400031&dc&ds=v1%3AxrR%2BBMRk49givAKfD0PTNqJ3spdOuFWljMO2DeNnHsk&crid=1TD3LJYAKGCW8&pf_rd_i=1968036031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=12b5260b-4338-474f-93e7-f7a6baf9113f&pf_rd_r=AQSHW7YTHZNJ2NH3TMFP&pf_rd_s=merchandised-search-6&qid=1711041938&rnid=1571271031&sprefix=sunglasses+for+men%2Caps%2C205&ref=sr_nr_n_2'
+            },
+            "kids":{
+                "Girls Watches":"https://www.amazon.in/s?i=watches&rh=n%3A1350387031%2Cn%3A5518819031&dc&fs=true&ds=v1%3AxvHi%2FdtKJZvE8bDFGIrmfIlo7TKrCItzQcKI%2BpKk1NU&qid=1711038447&rnid=1350387031&ref=sr_nr_n_4",
+                "Boys Watches ":'https://www.amazon.in/s?rh=n%3A2563506031&fs=true&ref=lp_2563506031_sar'
+            }
         }
     },
     'ELECTRONICS': {

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zegkv0s4ga4ct(m9^z2vz5ty5^bm%x%g@^lc#z*srvd)!!gt6!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['144.91.99.92']
 
 
 # Application definition
@@ -119,7 +119,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "amazon_app\static",
+    BASE_DIR / "/root/amazon_web_scrape/amazon_app\static",
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"

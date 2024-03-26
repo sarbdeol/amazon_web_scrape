@@ -12,9 +12,11 @@ from selenium.common.exceptions import NoSuchElementException, ElementClickInter
 # Set logging level to suppress specific logs
 logging.getLogger('urllib3').setLevel(logging.ERROR)
 logging.getLogger('selenium').setLevel(logging.ERROR)
-options = Options()
+options = webdriver.ChromeOptions()
+options.add_argument('--disable-gpu')
+options.add_argument('--no-sandbox')
 options.add_argument('--headless')
-options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36')
+options.add_argument('--disable-dev-shm-usage')
 
 import os
 
@@ -23,7 +25,10 @@ current_directory = os.getcwd()
 from urllib.parse import urlparse, parse_qs
 from openpyxl import Workbook
 import os
+from selenium.webdriver.chrome.service import Service
 
+from .models import PaginationSettings
+    # Add your options here if required
 # Initialize workbook and worksheet
 wb = Workbook()
 ws = wb.active
@@ -52,23 +57,29 @@ def extract_sku_from_url(url):
         else:
             return None
 def link_scrape(url):
-    try:
-    # Try to install and use the latest version of Chrome WebDriver
-        driver = webdriver.Chrome(options=options)
-    except:
-        # If the latest version is not available, use the previous version
-        driver = webdriver.Chrome(options=options)
 
+    print('start')
 
+    # Set the path to ChromeDriver binary
+    chrome_driver_path = '/usr/bin/chromedriver'
+    service = Service(chrome_driver_path)
 
+    # Initialize WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
     xlsx_filename = 'SKU_files/sku.xlsx'
 
     # Check if the file exists and delete it if it does
+    # Check if the file exists and delete it if it does
     if os.path.exists(xlsx_filename):
         os.remove(xlsx_filename)
-    # Scrape URLs and click "next" button four times
-    for _ in range(400):
+    # Scrape URLs and click "next" button four time
+    pagination_settings = PaginationSettings.objects.first()  # Assuming only one instance
+    if pagination_settings:
+        pagination_count = pagination_settings.pagination_count
+    else:
+        pagination_count=100
+    for _ in range(pagination_count):
         # Get the page source from Selenium
         page_source = driver.page_source
 
@@ -128,6 +139,4 @@ def link_scrape(url):
     return csv_filename
     # Quit the Selenium WebDriver
     
-
-
 

@@ -26,6 +26,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
     <style>
         /* Add your CSS styles here */
         .category {
@@ -49,7 +51,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -60,8 +62,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home' %}">
+            <li class="nav-item">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -91,30 +93,6 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            
-
-            
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-           
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -128,9 +106,11 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
 
                     <!-- Topbar Search -->
                     <form
@@ -689,40 +669,40 @@
                                         </div>
                                     </form>
                                 </div>
-                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                    <script>
-                                        $(document).ready(function() {
-                                            $('#submitBtn2').click(function(event) {
-                                                event.preventDefault(); // Prevent default form submission behavior
-                                                var url = $('#urlInput').val();
-                                                var csrfToken = $('[name="csrfmiddlewaretoken"]').val(); // Get CSRF token
-                                                $.ajax({
-                                                    url: '/scrape_by_url/',  // Specify the URL of the scrape_by_cat view
-                                                    type: "POST",
-                                                    data: {
-                                                        'urlInput': url,
-                                                        'csrfmiddlewaretoken': csrfToken
-                                                    },
-                                                    success: function(response) {
-                                                        // Handle success response if needed
-                                                        console.log("Success:", response);
-                                                    },
-                                                    error: function(xhr, status, error) {
-                                                        // Handle errors if needed
-                                                        console.error("Error:", error);
-                                                    }
-                                                });
-                                            
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#submitBtn2').click(function(event) {
+                                            event.preventDefault(); // Prevent default form submission behavior
+                                            var url = $('#urlInput').val();
+                                            var csrfToken = $('[name="csrfmiddlewaretoken"]').val(); // Get CSRF token
+                                            $.ajax({
+                                                url: '/scrape_by_url/',  // Specify the URL of the scrape_by_cat view
+                                                type: "POST",
+                                                data: {
+                                                    'urlInput': url,
+                                                    'csrfmiddlewaretoken': csrfToken
+                                                },
+                                                success: function(response) {
+                                                    // Handle success response if needed
+                                                    console.log("Success:", response);
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    // Handle errors if needed
+                                                    console.error("Error:", error);
+                                                }
                                             });
+                                        
                                         });
-                                    </script>
-                                </div>    
+                                    });
+                                </script>
+                            </div>    
                                     
                                     
                                     <!-- dropdown end -->
                                 
                          
-                            </div>
+                       
                         </div>
                         <div class="col-lg-6 mb-4">
 
@@ -773,7 +753,7 @@
                     </div>
                 </div>
 
-                </div>
+               
                 <!-- /.container-fluid -->
 
             </div>
@@ -783,15 +763,16 @@
             
             <!-- End of Footer -->
 
-        </div>
+        
         <!-- End of Content Wrapper -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2024</span>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2024</span>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
     <!-- End of Page Wrapper -->
 

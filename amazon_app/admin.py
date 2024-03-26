@@ -6,7 +6,11 @@ from .models import Header
 @admin.register(Header)
 class HeaderAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Header._meta.fields]  # Display all fields in the admin list
+from .models import PaginationSettings
 
+@admin.register(PaginationSettings)
+class PaginationSettingsAdmin(admin.ModelAdmin):
+    list_display = ['pagination_count']
 from .models import ScrapedData
 
 class ScrapedDataAdmin(admin.ModelAdmin):

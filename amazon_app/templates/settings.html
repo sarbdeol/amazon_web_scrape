@@ -355,7 +355,11 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Buttons</h1>
-
+                    {% if update_success %}
+                    <div class="alert alert-success" role="alert">
+                        settings updated successfully!
+                    </div>
+                    {% endif %}
                     <div class="row">
                         
                         
@@ -374,7 +378,9 @@
 
                                     <form method="post" action="{% url 'header_form' %}">
                                         {% csrf_token %}
+                                        <input type="hidden" name="form_type" value="header_form">
                                         {% for header, enabled in header_status.items %}
+                                        
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="{{ header }}" name="{{ header }}" {% if enabled %}checked{% endif %}>
                                             <label for="{{ header }}">{{ header }}</label><br>
@@ -390,7 +396,32 @@
                             </div>
 
                         </div>
-
+                        <div class="col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Select Pagination Count</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>Select the pagination count:</p>
+                                    <form method="post" action="{% url 'header_form' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="form_type" value="pagination_form">
+                                        <select class="form-select" name="pagination_count">
+                                            {% for count in pagination_counts %}
+                                                <option value="{{ count }}" {% if count == page_status.pagination_count %} selected {% endif %}>{{ count }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <p>Select the Amazon website:</p>
+                                        <select class="form-select" name="amazon_website">
+                                            <option value="amazon.in">Amazon India</option>
+                                            <option value="amazon.com">Amazon US</option>
+                                        </select>
+                                        <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>

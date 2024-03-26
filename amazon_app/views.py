@@ -13,11 +13,14 @@ import pandas as pd
 import json
 from concurrent.futures import ThreadPoolExecutor
 from .models import Header
+from .models import PaginationSettings
 # Create your views here.
 from .categories import CATEGORIES
 from .get_sku_by_cat import link_scrape
 from .models import ScrapedData
 from .models import ScrapeDataCount
+from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.core.paginator import Paginator
 categ={'mainCategory':'','subcategory1':'','subcategory2':'','subcategory3':''}
 # main_categories = ['Fashion', 'Electronics']  # Your list of main categories
 # main_categories2 = []  # Initialize an empty list for subcategories
@@ -161,22 +164,57 @@ def header_form(request):
         'Size', 'PackageDimensions', 'ItemModelNumber', 'Department', 'DateFirstAvailable',
         'BestSellersRank', 'BulletPoints', 'ImageURLs', 'ProductUrl', 'VedioLinks', 'DeliveryTime', 'Description'
     ]
-
+    pagination_counts = range(1, 401)  # Generates numbers from 1 to 400
+    print(request.POST)
     if request.method == 'POST':
-        header_instance = Header.objects.first()  # Assuming there's only one instance
-        if not header_instance:
-            header_instance = Header.objects.create()  # Create an instance if it doesn't exist
+        form_type = request.POST.get('form_type', '')
+        print(form_type)
+        # Check if the header form is submitted
+        if form_type == 'header_form':
+            header_instance = Header.objects.first()  # Assuming there's only one instance
+            if not header_instance:
+                header_instance = Header.objects.create()  # Create an instance if it doesn't exist
 
-        for header in headers:
-            enabled = request.POST.get(header, False) == 'on'
-            setattr(header_instance, f"{header.lower()}", enabled)
-        header_instance.save()
-        return HttpResponse("Status updated successfully")
-    else:
-        header_instance = Header.objects.first()  # Assuming there's only one instance
-        if not header_instance:
-            header_instance = Header.objects.create()  # Create an instance if it doesn't exist
-        return render(request, 'update_header_status.html', {'headers': headers, 'header_instance': header_instance})
+            for header in headers:
+                enabled = request.POST.get(header, False) == 'on'
+                setattr(header_instance, f"{header.lower()}", enabled)
+            
+            header_instance.save()
+            header_status = {header: getattr(header_instance, header.lower(), False) for header in headers}
+            update_success = True  # or False based on the result of status update
+            pagination_instance = PaginationSettings.objects.first()
+            return render(request, 'settings.html', {
+                'headers': headers, 
+                'header_status': header_status,
+                'pagination_counts': pagination_counts,
+                'pagination_instance': pagination_instance,
+                'update_success': update_success
+            })
+        # Check if the pagination form is submitted
+        if form_type == 'pagination_form':
+            pagination_instance = PaginationSettings.objects.first()  # Assuming there's only one instance
+            if not pagination_instance:
+                pagination_instance = PaginationSettings.objects.create(pagination_count=400)  # Create an instance if it doesn't exist with a default value
+            pagination_count = int(request.POST.get('pagination_count', 400))  # Default to 400 if not provided
+            print(pagination_count)
+            pagination_instance.pagination_count = pagination_count  # Assign the pagination count to the pagination_count attribute
+            pagination_instance.save()
+            
+            return render(request, 'settings.html', {
+                'headers': headers, 
+                'pagination_instance': pagination_instance,
+                'pagination_counts': pagination_counts,
+            })
+
+    # If the request method is not POST or if no form is submitted, render the settings page with initial data
+    header_instance = Header.objects.first()  # Assuming there's only one instance
+    pagination_instance = PaginationSettings.objects.first()  # Assuming there's only one instance
+    return render(request, 'settings.html', {
+        'headers': headers, 
+        'header_instance': header_instance,
+        'pagination_instance': pagination_instance,
+        'pagination_counts': pagination_counts
+    })
 def LoginPage(request):
     if request.method=='POST':
         username=request.POST.get('username')
@@ -199,7 +237,10 @@ def LogoutPage(request):
 def settingsPage(request):
     # Get the header instance
     header_instance = Header.objects.first()  # Assuming there's only one instance
+    page_instance=PaginationSettings.objects.first()
+    # print(page_instance)
     # print(header_instance)
+    pagination_counts = range(1, 401)  # Generates numbers from 1 to 400
     # Define all headers
     headers = [
         'store_name', 'Asin', 'Category', 'Title', 'MRP', 'Price', 'ShippingPrice',
@@ -210,10 +251,13 @@ def settingsPage(request):
 
     # Create a dictionary to store the enabled status of each header
     header_status = {header: getattr(header_instance, header.lower(), False) for header in headers}
+
     # print(header_status)
     context = {
         'headers': headers,
-        'header_status': header_status
+        'header_status': header_status,
+        'page_status': page_instance,
+        'pagination_counts': pagination_counts
     }
 
     return render(request, 'settings.html', context)
@@ -258,9 +302,7 @@ def scrape_asin(request):
     # Execute scraping function in background
     with ThreadPoolExecutor() as executor:
         executor.submit(main, file_path, 15)
-        data = ScrapedData.objects.get_or_create(url=file_path)[0]
-        data.status = "Asin scraper Complete"
-        data.save()
+        
     return JsonResponse({'success': True})
 
 
@@ -270,10 +312,10 @@ def scrape_asin(request):
 
 def list_excel_files(request):
     # Path to the folder containing Excel files
-    folder_path = os.path.join(settings.MEDIA_ROOT, 'upload')
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'download')
 
     # Get a list of Excel files in the folder
-    excel_files = [f for f in os.listdir(folder_path) if f.endswith('.xlsx')]
+    excel_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
     print(excel_files)
     # Pass the list of files to the template
     return render(request, 'download.html', {'excel_files': excel_files})
@@ -281,7 +323,7 @@ def list_excel_files(request):
 
 def download_excel_file(request, file_name):
     # Path to the folder containing Excel files
-    folder_path = os.path.join(settings.MEDIA_ROOT, 'upload')
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'download')
 
     # Full path to the Excel file
     file_path = os.path.join(folder_path, file_name)

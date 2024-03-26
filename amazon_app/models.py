@@ -38,7 +38,11 @@ class Header(models.Model):
 
     class Meta:
         verbose_name_plural = "Header Status"
+class PaginationSettings(models.Model):
+    pagination_count = models.IntegerField()  # Default pagination count
 
+    def __str__(self):
+        return f'Pagination Count: {self.pagination_count}'
 
 class ScrapedData(models.Model):
     url = models.URLField()
